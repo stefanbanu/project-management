@@ -1,6 +1,7 @@
 package com.stefanbanu.pma.controllers;
 
-import com.stefanbanu.pma.dao.ProjectRepository;
+import com.stefanbanu.pma.dao.EmployeeRepository;
+import com.stefanbanu.pma.entities.Employee;
 import com.stefanbanu.pma.entities.Project;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,23 +12,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/projects")
+@RequestMapping("/employees")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class ProjectController {
+public class EmployeeController {
 
-    private final ProjectRepository projectRepository;
+    private final EmployeeRepository employeeRepository;
 
     @GetMapping("/new")
-    public String displayProjectForm(Model model) {
-        Project project = new Project();
-        model.addAttribute("project", project);
-        return "new-project";
+    public String displayEmployeeForm(Model model) {
+        Employee employee = new Employee();
+        model.addAttribute("employee", employee);
+        return "new-employee";
     }
 
     @PostMapping("/save")
-    public String createProject(Project project, Model model) {
-        projectRepository.save(project);
+    public String createEmployee(Employee employee, Model model) {
+        employeeRepository.save(employee);
         // use a redirect to prevent duplicate submissions
-        return "redirect:/projects/new";
+        return "redirect:/employees/new";
     }
 }
