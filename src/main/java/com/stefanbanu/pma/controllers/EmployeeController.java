@@ -2,7 +2,6 @@ package com.stefanbanu.pma.controllers;
 
 import com.stefanbanu.pma.dao.EmployeeRepository;
 import com.stefanbanu.pma.entities.Employee;
-import com.stefanbanu.pma.entities.Project;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +21,7 @@ public class EmployeeController {
     public String displayEmployeeForm(Model model) {
         Employee employee = new Employee();
         model.addAttribute("employee", employee);
-        return "new-employee";
+        return "employees/new-employee";
     }
 
     @PostMapping("/save")

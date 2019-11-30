@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts :: header"></head>
+<body>
+<nav th:replace="layouts :: foo"></nav>
+
+<div>
+    <h4>Current Project</h4>
+    <div>ana are mere</div>
+    <table>
+        <thead>
+        <tr>
+            <th>Project Name</th>
+            <th>Project Stage</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="aProject : ${projects}">
+            <td th:text="${aProject.name}"/>
+            <td th:text="${aProject.stage}"/>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+
+</html>
