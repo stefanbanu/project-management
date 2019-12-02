@@ -1,20 +1,19 @@
 package com.stefanbanu.pma.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
+@Builder
 @NoArgsConstructor
-public class Project {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long projectId;
+@AllArgsConstructor
+public class Project extends BaseEntity{
+
     private String name;
     private String stage;
     private String description;
@@ -22,4 +21,11 @@ public class Project {
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST}, fetch = FetchType.LAZY)
     @JoinTable(name = "project_employee", joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name = "employee_id"))
     private List<Employee> employees;
+
+    public void addEmployee(Employee emp) {
+        if (employees == null) {
+            employees = new ArrayList<>();
+        }
+        employees.add(emp);
+    }
 }

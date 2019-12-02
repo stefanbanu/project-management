@@ -1,18 +1,17 @@
 package com.stefanbanu.pma.entities;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
+@Builder
 @NoArgsConstructor
-public class Employee {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long employeeId;
+@AllArgsConstructor
+public class Employee extends BaseEntity{
 
     private String firstName;
     private String lastName;
