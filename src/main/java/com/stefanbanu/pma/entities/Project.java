@@ -9,10 +9,11 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class Project extends BaseEntityProject {
+public class Project {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long project_id;
 
     private String name;
     private String stage;
@@ -22,10 +23,12 @@ public class Project extends BaseEntityProject {
     @JoinTable(name = "project_employee", joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name = "employee_id"))
     private List<Employee> employees;
 
-    public void addEmployee(Employee emp) {
-        if (employees == null) {
-            employees = new ArrayList<>();
-        }
-        employees.add(emp);
+    public Project() {
+    }
+
+    public Project(String name, String stage, String description) {
+        this.name = name;
+        this.stage = stage;
+        this.description = description;
     }
 }
