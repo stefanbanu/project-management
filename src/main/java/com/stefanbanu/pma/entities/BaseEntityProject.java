@@ -7,9 +7,9 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class BaseEntity {
+public abstract class BaseEntityProject {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long project_id;
 }

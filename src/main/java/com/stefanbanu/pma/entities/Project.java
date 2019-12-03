@@ -12,7 +12,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Project extends BaseEntity{
+public class Project extends BaseEntityProject {
 
     private String name;
     private String stage;

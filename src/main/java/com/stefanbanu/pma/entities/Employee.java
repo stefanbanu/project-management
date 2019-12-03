@@ -11,7 +11,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Employee extends BaseEntity{
+public class Employee extends BaseEntityEmployee {
 
     private String firstName;
     private String lastName;
