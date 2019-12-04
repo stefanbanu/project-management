@@ -2,6 +2,7 @@ package com.stefanbanu.pma.controllers;
 
 import com.stefanbanu.pma.dao.EmployeeRepository;
 import com.stefanbanu.pma.dao.ProjectRepository;
+import com.stefanbanu.pma.dto.EmployeeProject;
 import com.stefanbanu.pma.entities.Employee;
 import com.stefanbanu.pma.entities.Project;
 import lombok.RequiredArgsConstructor;
@@ -22,9 +23,10 @@ public class HomeController {
     @GetMapping("/")
     public String displayHome(Model model) {
         List<Project> projects = projectRepository.findAll();
-        List<Employee> employees = employeeRepository.findAll();
         model.addAttribute("projects", projects);
-        model.addAttribute("employees", employees);
+
+        List<EmployeeProject> employeeProjects = employeeRepository.employeesProjects();
+        model.addAttribute("employeesListProjectCount", employeeProjects);
         return "main/home";
     }
 }
