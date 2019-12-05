@@ -1,9 +1,9 @@
 package com.stefanbanu.pma.dto;
 
 public interface EmployeeProject {
-    public String getFirstName();
+    String getFirstName();
 
-    public String getLastName();
+    String getLastName();
 
-    public int getProjectCount();
+    int getProjectCount();
 }
