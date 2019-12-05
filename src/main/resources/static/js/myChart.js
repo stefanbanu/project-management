@@ -6,8 +6,8 @@ var numericData = [];
 var labelData = [];
 
 for (var i = 0; i < arrayLength; i++) {
-    numericData[i] = parsedJsonArray[i].value;
-    labelData[i] = parsedJsonArray[i].label;
+    numericData[i] = parsedJsonArray[i].count;
+    labelData[i] = parsedJsonArray[i].status;
 }
 
 // For a pie chart
@@ -30,10 +30,9 @@ new Chart(document.getElementById("myPieChart"), {
         }
     }
 });
-
-// "[{},{},{}]" decrypts json
-function decodeHtml(html) {
-    var htmlTextAreaElement = document.createElement("textarea");
-    htmlTextAreaElement.innerText = html;
-    return htmlTextAreaElement.value;
+// "[{"value": 1, "label": "COMPLETED"},{"value": 2, "label": "INPROGRESS"},{"value": 1, "label": "NOTSTARTED"}]"
+function decodeHtml(html){
+    var txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
 }
