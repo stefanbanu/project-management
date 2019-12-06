@@ -10,6 +10,7 @@ import com.stefanbanu.pma.entities.Employee;
 import com.stefanbanu.pma.entities.Project;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,12 +23,17 @@ import java.util.Map;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class HomeController {
 
+    @Value("${version}")
+    private String ver;
+
     private final ProjectRepository projectRepository;
     private final EmployeeRepository employeeRepository;
 
     @GetMapping("/")
     public String displayHome(Model model) throws JsonProcessingException {
-        Map<String, Object> map = new HashMap<>();
+
+
+        model.addAttribute("versionNr", ver);
 
         List<Project> projects = projectRepository.findAll();
         model.addAttribute("projects", projects);
