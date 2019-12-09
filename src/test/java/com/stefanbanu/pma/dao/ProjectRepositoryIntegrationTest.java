@@ -1,9 +1,7 @@
-package com.jrp.dao;
+package com.stefanbanu.pma.dao;
 
 import com.stefanbanu.pma.ProjectManagementApplication;
-import com.stefanbanu.pma.dao.ProjectRepository;
 import com.stefanbanu.pma.entities.Project;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
