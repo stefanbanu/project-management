@@ -1,10 +1,9 @@
 package com.stefanbanu.pma.controllers;
 
-import com.stefanbanu.pma.dao.EmployeeRepository;
-import com.stefanbanu.pma.dao.ProjectRepository;
 import com.stefanbanu.pma.entities.Employee;
 import com.stefanbanu.pma.entities.Project;
-import lombok.RequiredArgsConstructor;
+import com.stefanbanu.pma.services.EmployeeService;
+import com.stefanbanu.pma.services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,33 +16,40 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/projects")
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ProjectController {
+	
+	@Autowired
+	ProjectService proService;
+	
+	@Autowired
+	EmployeeService empService;
+	
+	@GetMapping
+	public String displayProjects(Model model) {
+		List<Project> projects = proService.getAll();
+		model.addAttribute("projects", projects);
+		return "projects/list-projects";
+	}
+	
+	@GetMapping("/new")
+	public String displayProjectForm(Model model) {
+		
+		Project aProject = new Project();
+		List<Employee> employees = empService.getAll();
+		model.addAttribute("project", aProject);
+		model.addAttribute("allEmployees", employees);
+		
+		return "projects/new-project";
+	}
+	
+	@PostMapping("/save")
+	public String createProject(Project project, @RequestParam List<Long> employees, Model model) {
+		
+		proService.save(project);
+		
+		// use a redirect to prevent duplicate submissions
+		return "redirect:/projects ";
+		
+	}
 
-    private final ProjectRepository projectRepository;
-    private final EmployeeRepository employeeRepository;
-
-    @GetMapping
-    public String displayEmployees(Model model) {
-        List<Project> projects = projectRepository.findAll();
-        model.addAttribute("projects", projects);
-
-        return "projects/list-projects";
-    }
-
-    @GetMapping("/new")
-    public String displayProjectForm(Model model) {
-        Project project = new Project();
-        List<Employee> employees = employeeRepository.findAll();
-        model.addAttribute("allEmployees", employees);
-        model.addAttribute("project", project);
-        return "projects/new-project";
-    }
-
-    @PostMapping("/save")
-    public String createProject(Project project, Model model) {
-        projectRepository.save(project);
-        // use a redirect to prevent duplicate submissions
-        return "redirect:/projects";
-    }
 }
