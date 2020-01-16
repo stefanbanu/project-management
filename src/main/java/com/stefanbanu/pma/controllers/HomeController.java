@@ -7,6 +7,7 @@ import com.stefanbanu.pma.dto.EmployeeProject;
 import com.stefanbanu.pma.entities.Project;
 import com.stefanbanu.pma.services.EmployeeService;
 import com.stefanbanu.pma.services.ProjectService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -16,17 +17,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class HomeController {
 	
 	@Value("${version}")
 	private String ver;
-	
-	@Autowired
-	ProjectService proService;
-	
-	@Autowired
-	EmployeeService empService;
 
+	private final ProjectService proService;
+	private final EmployeeService empService;
 
 	@GetMapping("/")
 	public String displayHome(Model model) throws JsonProcessingException {

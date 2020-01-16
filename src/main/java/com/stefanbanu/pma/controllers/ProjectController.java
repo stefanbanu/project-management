@@ -4,6 +4,7 @@ import com.stefanbanu.pma.entities.Employee;
 import com.stefanbanu.pma.entities.Project;
 import com.stefanbanu.pma.services.EmployeeService;
 import com.stefanbanu.pma.services.ProjectService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,13 +17,11 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/projects")
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ProjectController {
-	
-	@Autowired
-	ProjectService proService;
-	
-	@Autowired
-	EmployeeService empService;
+
+	private final ProjectService proService;
+	private final EmployeeService empService;
 	
 	@GetMapping
 	public String displayProjects(Model model) {

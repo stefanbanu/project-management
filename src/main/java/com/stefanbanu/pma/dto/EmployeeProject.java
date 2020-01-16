@@ -5,5 +5,5 @@ public interface EmployeeProject {
 
     String getLastName();
 
-    int getProjectCount();
+    Integer getProjectCount();
 }
